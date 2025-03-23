@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -101,14 +102,21 @@ fun SelectionRow(modifier: Modifier = Modifier) {
         Text(modifier = Modifier, text = currencyFrom)
     }
     Column (modifier = Modifier) {
-        Icon(
-            Icons.Rounded.Refresh,
-            contentDescription = "Refresh"
+        IconButton(
+            onClick = { mockOnClick() },
+            enabled = true,
+            modifier = Modifier,
+            content = { Icon(Icons.Rounded.Refresh,
+                contentDescription = "Refresh") }
         )
     }
     Column (modifier = Modifier) {
         Text(modifier = Modifier, text = currencyTo)
     }
+}
+
+fun mockOnClick() {
+    return Unit
 }
 
 @Preview
