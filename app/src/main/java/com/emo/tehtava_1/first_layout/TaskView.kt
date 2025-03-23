@@ -1,6 +1,5 @@
 package com.emo.tehtava_1.first_layout
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,7 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,8 +29,6 @@ import com.emo.tehtava_1.ui.theme.Tehtava_1Theme
 
 @Composable
 fun ConverterView(modifier: Modifier = Modifier) {
-
-
     Scaffold {paddingValues ->
         Column(modifier = Modifier
             .padding(paddingValues)
@@ -65,8 +61,6 @@ fun CenterPiece(modifier: Modifier = Modifier) {
     val configuration = LocalConfiguration.current
     var currencyInput by remember { mutableStateOf("") }
     val resultText by remember { mutableStateOf("0") }
-    val currencyFrom by remember { mutableStateOf("EUR") }
-    val currencyTo by remember { mutableStateOf("USD") }
 
     Column(
         modifier = Modifier,
@@ -87,19 +81,7 @@ fun CenterPiece(modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column (modifier = Modifier) {
-                Text(modifier = Modifier, text = currencyFrom)
-            }
-            Column (modifier = Modifier) {
-                Icon(
-                    Icons.Rounded.Refresh,
-                    contentDescription = "Refresh"
-                )
-            }
-            Column (modifier = Modifier) {
-                Text(modifier = Modifier, text = currencyTo)
-            }
-
+            SelectionRow(modifier)
         }
         Row (
             modifier = Modifier,
@@ -108,6 +90,24 @@ fun CenterPiece(modifier: Modifier = Modifier) {
         ) {
             Text(modifier = Modifier, text = resultText, fontSize = 35.sp)
         }
+    }
+}
+
+@Composable
+fun SelectionRow(modifier: Modifier = Modifier) {
+    val currencyFrom by remember { mutableStateOf("EUR") }
+    val currencyTo by remember { mutableStateOf("USD") }
+    Column (modifier = Modifier) {
+        Text(modifier = Modifier, text = currencyFrom)
+    }
+    Column (modifier = Modifier) {
+        Icon(
+            Icons.Rounded.Refresh,
+            contentDescription = "Refresh"
+        )
+    }
+    Column (modifier = Modifier) {
+        Text(modifier = Modifier, text = currencyTo)
     }
 }
 
