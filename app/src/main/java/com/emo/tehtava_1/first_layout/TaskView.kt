@@ -1,29 +1,19 @@
 package com.emo.tehtava_1.first_layout
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.text2.input.rememberTextFieldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Refresh
-import androidx.compose.material.icons.rounded.ShoppingCart
-import androidx.compose.material.icons.sharp.Refresh
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,8 +23,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,7 +36,6 @@ fun ConverterView(modifier: Modifier = Modifier) {
     Scaffold {paddingValues ->
         Column(modifier = Modifier
             .padding(paddingValues)
-            .background(Color.Cyan)
             .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -76,40 +63,52 @@ fun ConverterView(modifier: Modifier = Modifier) {
 @Composable
 fun CenterPiece(modifier: Modifier = Modifier) {
     val configuration = LocalConfiguration.current
-    var text by remember { mutableStateOf("") }
-    var resultText by remember { mutableStateOf("0") }
+    var currencyInput by remember { mutableStateOf("") }
+    val resultText by remember { mutableStateOf("0") }
+    val currencyFrom by remember { mutableStateOf("EUR") }
+    val currencyTo by remember { mutableStateOf("USD") }
+
     Column(
         modifier = Modifier,
         horizontalAlignment = Alignment.CenterHorizontally
         ) {
         Row (
-            modifier = Modifier.background(Color.Red)
+            modifier = Modifier
         ) {
             TextField(
                 modifier = Modifier.width(configuration.screenWidthDp.dp),
-                value = text,
-                onValueChange = { text = it },
+                value = currencyInput,
+                onValueChange = { currencyInput = it },
                 label = { Text("") }
             )
         }
         Row (
-            modifier = Modifier
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                Icons.Rounded.Refresh,
-                contentDescription = "Refresh"
-            )
+            Column (modifier = Modifier) {
+                Text(modifier = Modifier, text = currencyFrom)
+            }
+            Column (modifier = Modifier) {
+                Icon(
+                    Icons.Rounded.Refresh,
+                    contentDescription = "Refresh"
+                )
+            }
+            Column (modifier = Modifier) {
+                Text(modifier = Modifier, text = currencyTo)
+            }
+
         }
         Row (
             modifier = Modifier,
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(modifier = Modifier, text =resultText, fontSize = 30.sp)
+            Text(modifier = Modifier, text = resultText, fontSize = 35.sp)
         }
     }
-
-
 }
 
 @Preview
