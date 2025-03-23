@@ -5,13 +5,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -30,31 +28,27 @@ import com.emo.tehtava_1.ui.theme.Tehtava_1Theme
 
 @Composable
 fun ConverterView(modifier: Modifier = Modifier) {
-    Scaffold {paddingValues ->
-        Column(modifier = Modifier
-            .padding(paddingValues)
-            .fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceAround,
-            horizontalAlignment = Alignment.CenterHorizontally
+    Column(modifier = Modifier
+        .fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row (modifier = Modifier
+            .weight(1f)
         ) {
-            Row (modifier = Modifier
-                .weight(1f)
-            ) {
-            }
-            Row (modifier = Modifier
-                .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                CenterPiece(modifier = Modifier)
-            }
-            Row (modifier = Modifier
-                .weight(1f)
-            ) {
-            }
+        }
+        Row (modifier = Modifier
+            .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            CenterPiece(modifier = Modifier)
+        }
+        Row (modifier = Modifier
+            .weight(1f)
+        ) {
         }
     }
-
 }
 
 @Composable
